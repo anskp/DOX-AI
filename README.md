@@ -121,6 +121,20 @@ Created and maintained by [ANAS KP (anskp)](https://github.com/anskp)
 
 ---
 
+## 📸 ScreenShots
+
+![Screenshot 2025-05-09 205529](https://github.com/user-attachments/assets/04d442eb-ba6e-4860-ba98-75838a7b0839)
+
+![Screenshot 2025-05-09 205548](https://github.com/user-attachments/assets/b395c6c1-565f-416b-8af6-eb029d51b069)
+
+![Screenshot 2025-05-09 205559](https://github.com/user-attachments/assets/d6352181-6223-45d7-939b-ae69c60d11f4)
+
+![Screenshot 2025-05-09 205613](https://github.com/user-attachments/assets/575d35a8-3e28-4bde-bb53-d7f8995fa613)
+
+![Screenshot 2025-05-09 205625](https://github.com/user-attachments/assets/19af9490-e02d-40cd-bcc9-fa79a9194b35)
+
+---
+
 ## 📄 License
 
 This project is licensed under the MIT License.
