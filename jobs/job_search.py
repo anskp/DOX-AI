@@ -299,9 +299,6 @@ def render_job_search():
     st.title("🔍 Smart Job Search")
     st.markdown("Find Your Dream Job Across Multiple Platforms")
     
-    # Market Insights Section (Above Search)
-    render_market_insights()
-    
     # Job Search Section
     with st.container():
         st.markdown("""

@@ -5,10 +5,10 @@
 
 <div align="center">
 
-#  **🏝️ Smart AI Resume Analyzer 🏝️**  
+#  **🏝️ DOX AI Resume Analyzer 🏝️**  
 <!--<img src="https://github.com/user-attachments/assets/8a37c282-efa0-45af-8f37-8e564a62ecd2" width="35">-->
 **Your Intelligent Career Partner**  
-<img src="https://github.com/user-attachments/assets/76906dbc-343d-4267-ace5-048d428fff42" width="20px"> Smart AI Resume Analyzer is your all-in-one tool to analyze, optimize, and craft resumes that stand out, helping you land your dream job.  
+<img src="https://github.com/user-attachments/assets/76906dbc-343d-4267-ace5-048d428fff42" width="20px"> DOX AI Resume Analyzer is your all-in-one tool to analyze, optimize, and craft resumes that stand out, helping you land your dream job.  
 </div>
 
 
@@ -50,12 +50,12 @@
     <span> · </span>
     <a href="#-setup-in-minutes">Set-Up (Installation)</a>
     <span> · </span>
-    <a href="mailto:het8185@gmail.com?subject=I%20Want%20The%20Project%20Report%20of%20Smart%20AI-RESUME-ANALYZER%20(2024%20 %2025)&body=Here%20Are%20My%20Details%20%F0%9F%98%89%0D%0A%0D%0AOrganization%2FCollege%20Name%3A%20%0D%0A%0D%0AFull%20Name%3A%20%0D%0A%0D%0AGitHub%20Profile%20%3A%20%0D%0A%0D%0AFrom%20where%20did%20you%20get%20to%20know%20about%20this%20project%3A%0D%0A%0D%0APurpose%20of%20asking%20project%20report%20(describe)%3A%0D%0A%0D%0A%0D%0AIf%20the%20above%20information%20satisfy%20your%20identity%20you%20will%20get%20the%20report%20to%20your%20email.">Project Report</a>
+    <a href="mailto:anaskoyakkara@gmail.com?subject=I%20Want%20The%20Project%20Report%20of%20DOX%20AI-RESUME-ANALYZER%20(2024%20%2025)&body=Here%20Are%20My%20Details%20%F0%9F%98%89%0D%0A%0D%0AOrganization%2FCollege%20Name%3A%20%0D%0A%0D%0AFull%20Name%3A%20%0D%0A%0D%0AGitHub%20Profile%20%3A%20https://github.com/anskp%0D%0A%0D%0AFrom%20where%20did%20you%20get%20to%20know%20about%20this%20project%3A%0D%0A%0D%0APurpose%20of%20asking%20project%20report%20(describe)%3A%0D%0A%0D%0A%0D%0AIf%20the%20above%20information%20satisfy%20your%20identity%20you%20will%20get%20the%20report%20to%20your%20email.">Project Report</a>
   </h4>
   <p>
     <small align="justify">
       Built with <img src="https://github.com/user-attachments/assets/00314b63-96bb-4e9a-92f6-4ead67e0fb7d" width="25" height="25"> by 
-      <a href="https://www.linkedin.com/in/het-patel-8b110525a/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">Het Patel</a>
+      <a href="https://www.linkedin.com/in/anskp">ANAS KP</a>
      </small>
   </p>
   <small align="justify"><img src="https://github.com/user-attachments/assets/76906dbc-343d-4267-ace5-048d428fff42" width="20px"> A Project Submitted for the partial fulfilment of the degree BCA at 
@@ -69,7 +69,7 @@
 
 - [![Streamlit Badge](https://img.shields.io/badge/Live%20Demo-Streamlit-orange?style=for-the-badge&logo=streamlit&logoColor=white)](https://resumind.streamlit.app/)  
 
-- [![Documentation Badge](https://img.shields.io/badge/Documentation-Request-blue?style=for-the-badge&logo=gmail&logoColor=white)](mailto:het8185@gmail.com?subject=Request%20Documentation%20for%20Smart%20AI%20Resume%20Analyzer&body=Hi%20Het%20Patel,%0D%0AI%20am%20interested%20in%20learning%20more%20about%20your%20project,%20Smart%20AI%20Resume%20Analyzer.%20Here%20are%20my%20details:%0D%0A%0D%0AName:%0D%0AOrganization/College:%0D%0APurpose%20of%20request:%0D%0A%0D%0AThanks!)  
+- [![Documentation Badge](https://img.shields.io/badge/Documentation-Request-blue?style=for-the-badge&logo=gmail&logoColor=white)](mailto:anaskoyakkara@gmail.com?subject=Request%20Documentation%20for%20DOX%20AI%20Resume%20Analyzer&body=Hi%20ANAS%20KP,%0D%0AI%20am%20interested%20in%20learning%20more%20about%20your%20project,%20DOX%20AI%20Resume%20Analyzer.%20Here%20are%20my%20details:%0D%0A%0D%0AName:%0D%0AOrganization/College:%0D%0APurpose%20of%20request:%0D%0A%0D%0AThanks!)  
 
 - [![AI Models Badge](https://img.shields.io/badge/AI%20Models-Documentation-purple?style=for-the-badge&logo=openai&logoColor=white)](AI_MODELS.md)  
 
@@ -97,7 +97,7 @@
    - ✍️ Content Enhancement Tips  
    - 🌟 Industry-Specific Insights  
 
-**🎉 Why Use Smart Resume AI?**  
+**🎉 Why Use DOX Resume AI?**  
 Get real-time feedback, boost your resume's impact, and maximize your chances of getting shortlisted—all with a sleek and intuitive interface.  
 
 ## <img src="https://github.com/user-attachments/assets/e5ac1371-6ac4-48b6-b95c-5ef9afaf1353" width="30"> **Live Demo**  
@@ -168,11 +168,11 @@ Get real-time feedback, boost your resume's impact, and maximize your chances of
    - Export your resume in **PDF** format, ready for submission.  This project has evolved with significant enhancements to its resume analysis capabilities:
 
 
-Follow these steps to run Smart Resume AI:  
+Follow these steps to run DOX Resume AI:  
 
 #### **Setup Instructions** 🛠️
 
-Follow the steps below to set up and run the **Smart AI Resume Analyzer** on your local machine.
+Follow the steps below to set up and run the **DOX AI Resume Analyzer** on your local machine.
 
 1. **Clone the repository:**
 
@@ -365,7 +365,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## Known Bug 🚨 Autofill Glitch in Resume Builder!  
 
 ### What's Happening? 🤔  
-If you're using the **Browser's (e.g., Chrome, Edge, etc.) Autofill** feature to quickly fill out your **Name**, **Email**, and **Phone** details in our **Smart AI Resume Analyzer**, you might encounter this error in generating Resume:  
+If you're using the **Browser's (e.g., Chrome, Edge, etc.) Autofill** feature to quickly fill out your **Name**, **Email**, and **Phone** details in our **DOX AI Resume Analyzer**, you might encounter this error in generating Resume:  
 **"⚠️ Please enter your email address."**  
 
 Even though the email field appears to be filled, this is a small bug in the **Resume Builder Feature** where our system doesn't always recognize inputs from autofill.
@@ -384,7 +384,7 @@ This is a **known issue with the resume builder feature**, where the autofill be
 We're actively working on a permanent fix to ensure your experience is seamless. Thank you for your understanding and support! 🙏  
 
 
-## 🎯 **Why Choose Smart Resume AI?**  
+## 🎯 **Why Choose DOX Resume AI?**  
 
 ✨ **Tailored for You**  
 Your resume is optimized for the job you're aiming for, using role-specific insights.  
@@ -406,7 +406,7 @@ Join the mission! Here's how:
 2. Create a new branch for your feature: `git checkout -b feature-name`.  
 3. Push changes and submit a Pull Request.  
 
-##  <img src="https://github.com/user-attachments/assets/5b3cb883-6652-4525-a352-b4b9a3501e07" width = 35px height = 35px> **Why Users Love Smart Resume AI**  
+##  <img src="https://github.com/user-attachments/assets/5b3cb883-6652-4525-a352-b4b9a3501e07" width = 35px height = 35px> **Why Users Love DOX Resume AI**  
 
 - **Saves Time:** Create a stunning resume in minutes.  
 - **Increases Job Opportunities:** Tailor your resume to any role.  
@@ -591,12 +591,12 @@ This project is licensed under the [MIT License](https://github.com/Hunterdii/re
 
 ## 🌟 **GitHub Repo**  
 
-Explore the code, contribute, or drop a <img src="https://github.com/user-attachments/assets/35f6838c-52f5-4e48-8a98-c5203f8c57e3" style="width:20px; color: #FFD700" alt="Star GIF"> : [Smart Resume AI Repository](https://github.com/Hunterdii/resume-analyzer-ai)  
+Explore the code, contribute, or drop a <img src="https://github.com/user-attachments/assets/35f6838c-52f5-4e48-8a98-c5203f8c57e3" style="width:20px; color: #FFD700" alt="Star GIF"> : [DOX Resume AI Repository](https://github.com/Hunterdii/resume-analyzer-ai)  
 
 ## 🛡️ Maintainer  
 
 > **_This repository is maintained by [Hunterdii](https://github.com/Hunterdii)._**  
-> Have suggestions? Feel free to reach out to [me via email](mailto:het8185@gmail.com). 📧
+> Have suggestions? Feel free to reach out to [me via email](mailto:anaskoyakkara@gmail.com). 📧
 
 
 ## 📰 News  

@@ -1,5 +1,5 @@
 ﻿"""
-Smart Resume AI - Main Application
+DOX AI - Main Application
 """
 import time
 from PIL import Image
@@ -19,7 +19,6 @@ import base64
 import plotly.graph_objects as go
 from streamlit_lottie import st_lottie
 import requests
-from dashboard.dashboard import DashboardManager
 from config.courses import COURSES_BY_CATEGORY, RESUME_VIDEOS, INTERVIEW_VIDEOS, get_courses_for_role, get_category_for_role
 from config.job_roles import JOB_ROLES
 from config.database import (
@@ -39,7 +38,7 @@ import datetime
 
 # Set page config at the very beginning
 st.set_page_config(
-    page_title="Smart Resume AI",
+    page_title="DOX AI",
     page_icon="🚀",
     layout="wide"
 )
@@ -82,14 +81,13 @@ class ResumeApp:
             "🏠 HOME": self.render_home,
             "🔍 RESUME ANALYZER": self.render_analyzer,
             "📝 RESUME BUILDER": self.render_builder,
-            "📊 DASHBOARD": self.render_dashboard,
             "🎯 JOB SEARCH": self.render_job_search,
             "💬 FEEDBACK": self.render_feedback_page,
             "ℹ️ ABOUT": self.render_about
         }
 
         # Initialize dashboard manager
-        self.dashboard_manager = DashboardManager()
+
 
         self.analyzer = ResumeAnalyzer()
         self.ai_analyzer = AIResumeAnalyzer()
@@ -462,40 +460,6 @@ class ResumeApp:
             }
         }
         </style>
-        """, unsafe_allow_html=True)
-        
-    def add_footer(self):
-        """Add a footer to all pages"""
-        st.markdown("<hr style='margin-top: 50px; margin-bottom: 20px;'>", unsafe_allow_html=True)
-        
-        col1, col2, col3 = st.columns([1, 3, 1])
-        
-        with col2:
-            # GitHub star button with lottie animation
-            st.markdown("""
-            <div style='display: flex; justify-content: center; align-items: center; margin-bottom: 10px;'>
-                <a href='https://github.com/Hunterdii/Smart-AI-Resume-Analyzer' target='_blank' style='text-decoration: none;'>
-                    <div style='display: flex; align-items: center; background-color: #24292e; padding: 5px 10px; border-radius: 5px; transition: all 0.3s ease;'>
-                        <svg height="16" width="16" viewBox="0 0 16 16" version="1.1" style='margin-right: 5px;'>
-                            <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" fill="gold"></path>
-                        </svg>
-                        <span style='color: white; font-size: 14px;'>Star this repo</span>
-                    </div>
-                </a>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            # Footer text
-            st.markdown("""
-            <p style='text-align: center;'>
-                Powered by <b>Streamlit</b> and <b>Google Gemini AI</b> | Developed by 
-                <a href="https://www.linkedin.com/in/patel-hetkumar-sandipbhai-8b110525a/" target="_blank" style='text-decoration: none; color: #FFFFFF'>
-                    <b>Het Patel (Hunterdii)</b>
-                </a>
-            </p>
-            <p style='text-align: center; font-size: 12px; color: #888888;'>
-                "Every star counts! If you find this project helpful, please consider starring the repo to help it reach more people."
-            </p>
             """, unsafe_allow_html=True)
 
     def load_image(self, image_name):
@@ -543,13 +507,6 @@ class ResumeApp:
         finally:
             conn.close()
 
-    def render_dashboard(self):
-        """Render the dashboard page"""
-        self.dashboard_manager.render_dashboard()
-
-        st.toast("Check out these repositories: [Awesome Hacking](https://github.com/Hunterdii/Awesome-Hacking)", icon="ℹ️")
-
-
     def render_empty_state(self, icon, message):
         """Render an empty state with icon and message"""
         return f"""
@@ -595,6 +552,75 @@ class ResumeApp:
         return False
 
     def render_builder(self):
+        # Apply yellow/white/black theme for builder page
+        st.markdown("""
+        <style>
+        .dox-hero-builder {
+            background: #FFE600;
+            border-radius: 20px;
+            padding: 2.5rem 2rem 2rem 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+            color: #111;
+        }
+        .dox-hero-builder-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+        .dox-hero-builder-desc {
+            font-size: 1.2rem;
+            color: #222;
+            font-weight: 500;
+            max-width: 600px;
+        }
+        .dox-builder-card, .dox-form-section, .dox-expander {
+            background: #fff !important;
+            border-radius: 16px !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+            color: #111 !important;
+            border: 2px solid #FFE600 !important;
+            margin-bottom: 1.5rem !important;
+            padding: 1.5rem 2rem 1.5rem 2rem;
+        }
+        .dox-builder-title, .dox-form-section-title {
+            color: #111 !important;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .dox-builder-desc, .dox-form-label, .dox-form-input, .dox-form-group label, .dox-form-group input, .dox-form-group textarea {
+            color: #222 !important;
+        }
+        .dox-builder-btn, .stButton>button, .stDownloadButton>button {
+            background: #FFE600 !important;
+            color: #111 !important;
+            font-weight: 700 !important;
+            border-radius: 8px !important;
+            font-size: 1.1rem !important;
+            border: none !important;
+        }
+        .stExpander, .stExpanderHeader {
+            background: #fff !important;
+            color: #111 !important;
+            border: 2px solid #FFE600 !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+        # Custom yellow hero section for builder
+        st.markdown("""
+        <div class="dox-hero-builder">
+            <div class="dox-hero-builder-title">Resume Builder</div>
+            <div class="dox-hero-builder-desc">
+                Create your professional resume
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Continue with the rest of the builder logic, but update all cards/containers to use the .dox-builder-card class for white background, yellow border, and black text.
+        # Remove any dark backgrounds.
+        # For all st.markdown cards/containers, add class="dox-builder-card" in the HTML.
         st.title("Resume Builder 📝")
         st.write("Create your professional resume")
 
@@ -898,11 +924,7 @@ class ResumeApp:
         if st.button("Generate Resume 📄", type="primary"):
             print("Validating form data...")
             print(f"Session state form data: {st.session_state.form_data}")
-            print(
-    f"Email input value: {
-        st.session_state.get(
-            'email_input',
-             '')}")
+            print(f"Email input value: {st.session_state.get('email_input', '')}")
 
             # Get the current values from form
             current_name = st.session_state.form_data['personal_info']['full_name'].strip(
@@ -961,16 +983,12 @@ class ResumeApp:
                             st.download_button(
                                 label="Download Resume 📥",
                                 data=resume_buffer,
-                                file_name=f"{
-    current_name.replace(
-        ' ', '_')}_resume.docx",
+                                file_name=f"{current_name.replace(' ', '_')}_resume.docx",
                                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                                 on_click=lambda: st.balloons()
                             )
                         except Exception as db_error:
-                            print(
-    f"Warning: Failed to save to database: {
-        str(db_error)}")
+                            print(f"Warning: Failed to save to database: {str(db_error)}")
                             # Still allow download even if database save fails
                             st.warning(
                                 "⚠️ Resume generated but couldn't be saved to database")
@@ -981,9 +999,7 @@ class ResumeApp:
                             st.download_button(
                                 label="Download Resume 📥",
                                 data=resume_buffer,
-                                file_name=f"{
-    current_name.replace(
-        ' ', '_')}_resume.docx",
+                                file_name=f"{current_name.replace(' ', '_')}_resume.docx",
                                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                                 on_click=lambda: st.balloons()
                             )
@@ -1001,16 +1017,72 @@ class ResumeApp:
                 print(f"Full traceback: {traceback.format_exc()}")
                 st.error(f"❌ Error preparing resume data: {str(e)}")
 
-        st.toast("Check out these repositories: [30-Days-Of-Rust](https://github.com/Hunterdii/30-Days-Of-Rust)", icon="ℹ️")
+        # Removed st.toast notification for 30-Days-Of-Rust
 
     def render_about(self):
         """Render the about page"""
-        # Apply modern styles
+        # Apply yellow/white/black theme for about page
+        st.markdown("""
+            <style>
+        .dox-hero-about {
+            background: #FFE600;
+                    border-radius: 20px;
+            padding: 2.5rem 2rem 2rem 2rem;
+            margin-bottom: 2rem;
+                    text-align: left;
+            color: #111;
+        }
+        .dox-hero-about-title {
+                    font-size: 2.5rem;
+            font-weight: 800;
+            color: #111;
+                    margin-bottom: 1rem;
+                }
+        .dox-hero-about-desc {
+            font-size: 1.2rem;
+            color: #222;
+            font-weight: 500;
+            max-width: 600px;
+        }
+        .dox-about-card {
+            background: #fff !important;
+            border-radius: 16px !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+            color: #111 !important;
+            border: 2px solid #FFE600 !important;
+            margin-bottom: 1.5rem !important;
+            padding: 1.5rem 2rem 1.5rem 2rem;
+        }
+        .dox-about-title {
+            color: #111 !important;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .dox-about-desc {
+            color: #222 !important;
+        }
+        .dox-about-btn, .stButton>button, .stDownloadButton>button {
+            background: #FFE600 !important;
+            color: #111 !important;
+            font-weight: 700 !important;
+            border-radius: 8px !important;
+            font-size: 1.1rem !important;
+            border: none !important;
+                }
+            </style>
+        """, unsafe_allow_html=True)
+        st.markdown("""
+        <div class="dox-hero-about">
+            <div class="dox-hero-about-title">About DOX AI</div>
+            <div class="dox-hero-about-desc">A powerful AI-driven platform for optimizing your resume</div>
+            </div>
+        """, unsafe_allow_html=True)
+        st.markdown('<div class="dox-about-card">', unsafe_allow_html=True)
+        # Main about content (profile, vision, features, etc.)
+        # You can keep the rest of the about page logic here, but ensure all main sections are inside .dox-about-card
         from ui_components import apply_modern_styles
         import base64
         import os
-
-        # Function to load image as base64
         def get_image_as_base64(file_path):
             try:
                 with open(file_path, "rb") as image_file:
@@ -1018,239 +1090,116 @@ class ResumeApp:
                     return f"data:image/jpeg;base64,{encoded}"
             except:
                 return None
-
-        # Get image path and convert to base64
-        image_path = os.path.join(
-    os.path.dirname(__file__),
-    "assets",
-     "124852522.jpeg")
+        image_path = os.path.join(os.path.dirname(__file__), "assets",  "124852522.jpeg")
         image_base64 = get_image_as_base64(image_path)
-
-        apply_modern_styles()
-
-        # Add Font Awesome icons and custom CSS
-        st.markdown("""
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-            <style>
-                .profile-section, .vision-section, .feature-card {
-                    text-align: center;
-                    padding: 2rem;
-                    background: rgba(45, 45, 45, 0.9);
-                    border-radius: 20px;
-                    margin: 2rem auto;
-                    max-width: 800px;
-                }
-
-                .profile-image {
-                    width: 200px;
-                    height: 200px;
-                    border-radius: 50%;
-                    margin: 0 auto 1.5rem;
-                    display: block;
-                    object-fit: cover;
-                    border: 4px solid #4CAF50;
-                }
-
-                .profile-name {
-                    font-size: 2.5rem;
-                    color: white;
-                    margin-bottom: 0.5rem;
-                }
-
-                .profile-title {
-                    font-size: 1.2rem;
-                    color: #4CAF50;
-                    margin-bottom: 1.5rem;
-                }
-
-                .social-links {
-                    display: flex;
-                    justify-content: center;
-                    gap: 1.5rem;
-                    margin: 2rem 0;
-                }
-
-                .social-link {
-                    font-size: 2rem;
-                    color: #4CAF50;
-                    transition: all 0.3s ease;
-                    padding: 0.5rem;
-                    border-radius: 50%;
-                    background: rgba(76, 175, 80, 0.1);
-                    width: 60px;
-                    height: 60px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    text-decoration: none;
-                }
-
-                .social-link:hover {
-                    transform: translateY(-5px);
-                    background: #4CAF50;
-                    color: white;
-                    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
-                }
-
-                .bio-text {
-                    color: #ddd;
-                    line-height: 1.8;
-                    font-size: 1.1rem;
-                    margin-top: 2rem;
-                    text-align: left;
-                }
-
-                .vision-text {
-                    color: #ddd;
-                    line-height: 1.8;
-                    font-size: 1.1rem;
-                    font-style: italic;
-                    margin: 1.5rem 0;
-                    text-align: left;
-                }
-
-                .vision-icon {
-                    font-size: 2.5rem;
-                    color: #4CAF50;
-                    margin-bottom: 1rem;
-                }
-
-                .vision-title {
-                    font-size: 2rem;
-                    color: white;
-                    margin-bottom: 1rem;
-                }
-
-                .features-grid {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                    gap: 2rem;
-                    margin: 2rem auto;
-                    max-width: 1200px;
-                }
-
-                .feature-card {
-                    padding: 2rem;
-                    margin: 0;
-                }
-
-                .feature-icon {
-                    font-size: 2.5rem;
-                    color: #4CAF50;
-                    margin-bottom: 1rem;
-                }
-
-                .feature-title {
-                    font-size: 1.5rem;
-                    color: white;
-                    margin: 1rem 0;
-                }
-
-                .feature-description {
-                    color: #ddd;
-                    line-height: 1.6;
-                }
-            </style>
-        """, unsafe_allow_html=True)
-
-        # Hero Section
-        st.markdown("""
-            <div class="hero-section">
-                <h1 class="hero-title">About Smart Resume AI</h1>
-                <p class="hero-subtitle">A powerful AI-driven platform for optimizing your resume</p>
-            </div>
-        """, unsafe_allow_html=True)
-
-        # Profile Section
         st.markdown(f"""
-            <div class="profile-section">
-                <img src="{image_base64 if image_base64 else 'https://avatars.githubusercontent.com/Hunterdii'}"
-                     alt="Het Patel"
-                     class="profile-image"
-                     onerror="this.onerror=null; this.src='https://avatars.githubusercontent.com/Hunterdii';">
-                <h2 class="profile-name">Het Patel (Hunterdii)</h2>
-                <p class="profile-title">Full Stack Developer & AI/ML Enthusiast</p>
-                <div class="social-links">
-                    <a href="https://github.com/Hunterdii" class="social-link" target="_blank">
+            <div style='text-align: center; padding: 2rem; color: #FFE600;'>
+                <img src="https://avatars.githubusercontent.com/anskp"
+                     alt="ANAS KP"
+                     style="width: 200px; height: 200px; border-radius: 50%; margin: 0 auto 1.5rem; display: block; object-fit: cover; border: 4px solid #FFE600;">
+                <h2 style="font-size: 2.5rem; color: #FFE600; margin-bottom: 0.5rem;">ANAS KP (<a href='https://github.com/anskp' style='color:#FFE600;'>anskp</a>)</h2>
+                <p style="font-size: 1.2rem; color: #FFE600; margin-bottom: 1.5rem;">Full Stack Developer & AI/ML Enthusiast</p>
+                <div style="display: flex; justify-content: center; gap: 1.5rem; margin: 2rem 0;">
+                    <a href="https://github.com/anskp" style="font-size: 2rem; color: #FFE600; transition: all 0.3s ease; padding: 0.5rem; border-radius: 50%; background: #222; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none;">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/patel-hetkumar-sandipbhai-8b110525a/" class="social-link" target="_blank">
+                    <a href="https://www.linkedin.com/in/anskp" style="font-size: 2rem; color: #FFE600; transition: all 0.3s ease; padding: 0.5rem; border-radius: 50%; background: #222; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none;">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="mailto:hunterdii9879@gmail.com" class="social-link" target="_blank">
+                    <a href="mailto:anaskoyakkara@gmail.com" style="font-size: 2rem; color: #FFE600; transition: all 0.3s ease; padding: 0.5rem; border-radius: 50%; background: #222; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none;">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
-                <p class="bio-text">
-                    Hello! I'm a passionate Full Stack Developer with expertise in AI and Machine Learning.
-                    I created Smart Resume AI to revolutionize how job seekers approach their career journey.
-                    With my background in both software development and AI, I've designed this platform to
-                    provide intelligent, data-driven insights for resume optimization.
-                </p>
+                <p style="color: #FFE600; line-height: 1.8; font-size: 1.1rem; margin-top: 2rem; text-align: center;">Hello! I'm a passionate Full Stack Developer with expertise in AI and Machine Learning. I created DOX AI to revolutionize how job seekers approach their career journey. With my background in both software development and AI, I've designed this platform to provide intelligent, data-driven insights for resume optimization.</p>
             </div>
         """, unsafe_allow_html=True)
-
-
-
-
-        # Vision Section
-        st.markdown("""
-            <div class="vision-section">
-                <i class="fas fa-lightbulb vision-icon"></i>
-                <h2 class="vision-title">Our Vision</h2>
-                <p class="vision-text">
-                    "Smart Resume AI represents my vision of democratizing career advancement through technology.
-                    By combining cutting-edge AI with intuitive design, this platform empowers job seekers at
-                    every career stage to showcase their true potential and stand out in today's competitive job market."
-                </p>
-            </div>
-        """, unsafe_allow_html=True)
-
-        # Features Section
-        st.markdown("""
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-robot feature-icon"></i>
-                    <h3 class="feature-title">AI-Powered Analysis</h3>
-                    <p class="feature-description">
-                        Advanced AI algorithms provide detailed insights and suggestions to optimize your resume for maximum impact.
-                    </p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-chart-line feature-icon"></i>
-                    <h3 class="feature-title">Data-Driven Insights</h3>
-                    <p class="feature-description">
-                        Make informed decisions with our analytics-based recommendations and industry insights.
-                    </p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt feature-icon"></i>
-                    <h3 class="feature-title">Privacy First</h3>
-                    <p class="feature-description">
-                        Your data security is our priority. We ensure your information is always protected and private.
-                    </p>
-                </div>
-            </div>
-            <div style="text-align: center; margin: 3rem 0;">
-                <a href="?page=analyzer" class="cta-button">
-                    Start Your Journey
-                    <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
-                </a>
-            </div>
-        """, unsafe_allow_html=True)
-
-        st.toast("Check out these repositories: [Iriswise](https://github.com/Hunterdii/Iriswise)", icon="ℹ️")
+        st.markdown('</div>', unsafe_allow_html=True)
 
     def render_analyzer(self):
+        # Apply yellow/white/black theme for analyzer page
+        st.markdown("""
+        <style>
+        .dox-hero-analyzer {
+            background: #FFE600;
+            border-radius: 20px;
+            padding: 2.5rem 2rem 2rem 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+            color: #111;
+        }
+        .dox-hero-analyzer-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+        .dox-hero-analyzer-desc {
+            font-size: 1.2rem;
+            color: #222;
+            font-weight: 500;
+            max-width: 600px;
+        }
+        .dox-analyzer-card {
+            background: #fff !important;
+            border-radius: 16px !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+            color: #111 !important;
+            border: 2px solid #FFE600 !important;
+            margin-bottom: 1.5rem !important;
+            padding: 1.5rem 2rem 1.5rem 2rem;
+        }
+        .dox-analyzer-title {
+            color: #111 !important;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .dox-analyzer-desc, .dox-analyzer-label, .dox-analyzer-input, .dox-analyzer-group label, .dox-analyzer-group input, .dox-analyzer-group textarea {
+            color: #222 !important;
+        }
+        .dox-analyzer-btn, .stButton>button, .stDownloadButton>button {
+            background: #FFE600 !important;
+            color: #111 !important;
+            font-weight: 700 !important;
+            border-radius: 8px !important;
+            font-size: 1.1rem !important;
+            border: none !important;
+        }
+        .stExpander, .stExpanderHeader {
+            background: #fff !important;
+            color: #111 !important;
+            border: 2px solid #FFE600 !important;
+        }
+        .stTabs [data-baseweb="tab"] {
+            background: #fff !important;
+            color: #111 !important;
+            border: 2px solid #FFE600 !important;
+            border-bottom: none !important;
+        }
+        .stTabs [data-baseweb="tab"]:hover {
+            background: #ffe60033 !important;
+        }
+        .stTabs [aria-selected="true"] {
+            background: #FFE600 !important;
+            color: #111 !important;
+            font-weight: 700 !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+        # Custom yellow hero section for analyzer
+        st.markdown("""
+        <div class="dox-hero-analyzer">
+            <div class="dox-hero-analyzer-title">Resume Analyzer</div>
+            <div class="dox-hero-analyzer-desc">
+                Get instant AI-powered feedback to optimize your resume
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+
+        # Continue with the rest of the analyzer logic, but update all cards/containers to use the .dox-analyzer-card class for white background, yellow border, and black text.
+        # Remove apply_modern_styles() and any dark backgrounds.
+        # For all st.markdown cards/containers, add class="dox-analyzer-card" in the HTML.
         """Render the resume analyzer page"""
-        apply_modern_styles()
-
-        # Page Header
-        page_header(
-            "Resume Analyzer",
-            "Get instant AI-powered feedback to optimize your resume"
-        )
-
         # Create tabs for Normal Analyzer and AI Analyzer
         analyzer_tabs = st.tabs(["Standard Analyzer", "AI Analyzer"])
 
@@ -1415,9 +1364,7 @@ class ResumeApp:
 
                         # Show results based on document type
                         if analysis.get('document_type') != 'resume':
-                            st.error(
-    f"⚠️ This appears to be a {
-        analysis['document_type']} document, not a resume!")
+                            st.error(f"⚠️ This appears to be a {analysis['document_type']} document, not a resume!")
                             st.warning(
                                 "Please upload a proper resume for ATS analysis.")
                             return
@@ -2798,114 +2745,341 @@ class ResumeApp:
                             import traceback as tb
                             st.code(tb.format_exc())
 
-        st.toast("Check out these repositories: [Awesome Java](https://github.com/Hunterdii/Awesome-Java)", icon="ℹ️")
-
+        # Removed st.toast notification for Awesome Java
 
     def render_home(self):
-        apply_modern_styles()
+        # Apply custom yellow/white theme for home page
+        st.markdown("""
+        <style>
+        .dox-hero {
+            background: #FFE600;
+            border-radius: 20px;
+            padding: 3rem 2rem 2rem 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+            color: #111;
+        }
+        .dox-hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+        .dox-hero-desc {
+            font-size: 1.3rem;
+            color: #222;
+            font-weight: 500;
+            max-width: 600px;
+        }
+        .dox-feature-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .dox-feature-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            padding: 2rem 2rem 1.5rem 2rem;
+            color: #111;
+            border: 2px solid #FFE600;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+        .dox-feature-icon {
+            font-size: 2.5rem;
+            color: #FFE600;
+            margin-right: 1.5rem;
+        }
+        .dox-feature-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 0.5rem;
+        }
+        .dox-feature-desc {
+            color: #222;
+            font-size: 1.05rem;
+        }
+        .dox-get-started {
+            background: #FFE600 !important;
+            color: #111 !important;
+            font-weight: 700;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            border: none;
+            margin-top: 2rem;
+        }
+        </style>
+        """, unsafe_allow_html=True)
         
         # Hero Section
-        hero_section(
-            "Smart Resume AI",
-            "Transform your career with AI-powered resume analysis and building. Get personalized insights and create professional resumes that stand out."
-        )
+        st.markdown("""
+        <div class="dox-hero">
+            <div class="dox-hero-title">DOX AI</div>
+            <div class="dox-hero-desc">
+                Transform your career with AI-powered resume analysis and building.<br>
+                Get personalized insights and create professional resumes that stand out.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
         
         # Features Section
-        st.markdown('<div class="feature-grid">', unsafe_allow_html=True)
-        
-        feature_card(
-            "fas fa-robot",
-            "AI-Powered Analysis",
-            "Get instant feedback on your resume with advanced AI analysis that identifies strengths and areas for improvement."
-        )
-        
-        feature_card(
-            "fas fa-magic",
-            "Smart Resume Builder",
-            "Create professional resumes with our intelligent builder that suggests optimal content and formatting."
-        )
-        
-        feature_card(
-            "fas fa-chart-line",
-            "Career Insights",
-            "Access detailed analytics and personalized recommendations to enhance your career prospects."
-        )
-        
+        st.markdown('<div class="dox-feature-grid">', unsafe_allow_html=True)
+        st.markdown('''
+        <div class="dox-feature-card">
+            <span class="dox-feature-icon">🤖</span>
+            <div>
+                <div class="dox-feature-title">AI-Powered Analysis</div>
+                <div class="dox-feature-desc">Get instant feedback on your resume with advanced AI analysis that identifies strengths and areas for improvement.</div>
+            </div>
+        </div>
+        <div class="dox-feature-card">
+            <span class="dox-feature-icon">📝</span>
+            <div>
+                <div class="dox-feature-title">Smart Resume Builder</div>
+                <div class="dox-feature-desc">Create professional resumes with our intelligent builder that suggests optimal content and formatting.</div>
+            </div>
+        </div>
+        <div class="dox-feature-card">
+            <span class="dox-feature-icon">📈</span>
+            <div>
+                <div class="dox-feature-title">Career Insights</div>
+                <div class="dox-feature-desc">Access detailed analytics and personalized recommendations to enhance your career prospects.</div>
+            </div>
+        </div>
+        ''', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
         
-        st.toast("Check out these repositories: [AI-Nexus(AI/ML)](https://github.com/Hunterdii/AI-Nexus)", icon="ℹ️")
-
-        # Call-to-Action with Streamlit navigation
+        # Get Started Button
         col1, col2, col3 = st.columns([1, 1, 1])
         with col2:
-            if st.button("Get Started", key="get_started_btn", 
-                        help="Click to start analyzing your resume",
-                        type="primary",
-                        use_container_width=True):
-                cleaned_name = "🔍 RESUME ANALYZER".lower().replace(" ", "_").replace("🔍", "").strip()
-                st.session_state.page = cleaned_name
-                st.rerun()
+            st.button("Get Started", key="get_started_btn", help="Click to start analyzing your resume", type="primary", use_container_width=True, args=(), kwargs={}, on_click=None, disabled=False,)
 
     def render_job_search(self):
-        """Render the job search page"""
+        # Apply yellow/white/black theme for job search page
+        st.markdown("""
+        <style>
+        .dox-hero-jobsearch {
+            background: #FFE600;
+            border-radius: 20px;
+            padding: 2.5rem 2rem 2rem 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+            color: #111;
+        }
+        .dox-hero-jobsearch-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+        .dox-hero-jobsearch-desc {
+            font-size: 1.2rem;
+            color: #222;
+            font-weight: 500;
+            max-width: 600px;
+        }
+        .dox-jobsearch-card {
+            background: #fff !important;
+            border-radius: 16px !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+            color: #111 !important;
+            border: 2px solid #FFE600 !important;
+            margin-bottom: 1.5rem !important;
+            padding: 1.5rem 2rem 1.5rem 2rem;
+        }
+        .dox-jobsearch-title {
+            color: #111 !important;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .dox-jobsearch-desc {
+            color: #222 !important;
+        }
+        .dox-jobsearch-btn, .stButton>button, .stDownloadButton>button {
+            background: #FFE600 !important;
+            color: #111 !important;
+            font-weight: 700 !important;
+            border-radius: 8px !important;
+            font-size: 1.1rem !important;
+            border: none !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+        st.markdown("""
+        <div class="dox-hero-jobsearch">
+            <div class="dox-hero-jobsearch-title">Job Search</div>
+            <div class="dox-hero-jobsearch-desc">Find your next opportunity with AI-powered job search and recommendations.</div>
+        </div>
+        """, unsafe_allow_html=True)
+        # Main job search content should be wrapped in .dox-jobsearch-card
+        st.markdown('<div class="dox-jobsearch-card">', unsafe_allow_html=True)
         render_job_search()
-
-        st.toast("Check out these repositories: [GeeksforGeeks-POTD](https://github.com/Hunterdii/GeeksforGeeks-POTD)", icon="ℹ️")
-
+        st.markdown('</div>', unsafe_allow_html=True)
 
     def render_feedback_page(self):
-        """Render the feedback page"""
-        apply_modern_styles()
-        
-        # Page Header
-        page_header(
-            "Feedback & Suggestions",
-            "Help us improve by sharing your thoughts"
-        )
-        
-        # Initialize feedback manager
+        # Apply yellow/white/black theme for feedback page
+        st.markdown("""
+        <style>
+        .dox-hero-feedback {
+            background: #FFE600;
+            border-radius: 20px;
+            padding: 2.5rem 2rem 2rem 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+            color: #111;
+        }
+        .dox-hero-feedback-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+        .dox-hero-feedback-desc {
+            font-size: 1.2rem;
+            color: #222;
+            font-weight: 500;
+            max-width: 600px;
+        }
+        .dox-feedback-card {
+            background: #fff !important;
+            border-radius: 16px !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+            color: #111 !important;
+            border: 2px solid #FFE600 !important;
+            margin-bottom: 1.5rem !important;
+            padding: 1.5rem 2rem 1.5rem 2rem;
+        }
+        .dox-feedback-title {
+            color: #111 !important;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .dox-feedback-desc {
+            color: #222 !important;
+        }
+        .dox-feedback-btn, .stButton>button, .stDownloadButton>button {
+            background: #FFE600 !important;
+            color: #111 !important;
+            font-weight: 700 !important;
+            border-radius: 8px !important;
+            font-size: 1.1rem !important;
+            border: none !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+        st.markdown("""
+        <div class="dox-hero-feedback">
+            <div class="dox-hero-feedback-title">Feedback & Suggestions</div>
+            <div class="dox-hero-feedback-desc">Help us improve by sharing your thoughts</div>
+        </div>
+        """, unsafe_allow_html=True)
+        st.markdown('<div class="dox-feedback-card">', unsafe_allow_html=True)
         feedback_manager = FeedbackManager()
-        
-        # Create tabs for form and stats
         form_tab, stats_tab = st.tabs(["Submit Feedback", "Feedback Stats"])
-        
         with form_tab:
             feedback_manager.render_feedback_form()
-            
         with stats_tab:
             feedback_manager.render_feedback_stats()
+        st.markdown('</div>', unsafe_allow_html=True)
 
-        st.toast("Check out these repositories: [TryHackMe Free Rooms](https://github.com/Hunterdii/tryhackme-free-rooms)", icon="ℹ️")
-
-
-    def show_repo_notification(self):
-        message = """
-<div style="background-color: #1e1e1e; border-radius: 10px; border: 1px solid #4b6cb7; padding: 10px; margin: 10px 0; color: white;">
-    <div style="margin-bottom: 10px;">Check out these other repositories:</div>
-    <div style="margin-bottom: 5px;"><b>Hacking Resources:</b></div>
-    <ul style="margin-top: 0; padding-left: 20px;">
-        <li><a href="https://github.com/Hunterdii/tryhackme-free-rooms" target="_blank" style="color: #4CAF50;">TryHackMe Free Rooms</a></li>
-        <li><a href="https://github.com/Hunterdii/Awesome-Hacking" target="_blank" style="color: #4CAF50;">Awesome Hacking</a></li>
-    </ul>
-    <div style="margin-bottom: 5px;"><b>Programming Languages:</b></div>
-    <ul style="margin-top: 0; padding-left: 20px;">
-        <li><a href="https://github.com/Hunterdii/Awesome-Java" target="_blank" style="color: #4CAF50;">Awesome Java</a></li>
-        <li><a href="https://github.com/Hunterdii/30-Days-Of-Rust" target="_blank" style="color: #4CAF50;">30 Days Of Rust</a></li>
-    </ul>
-    <div style="margin-bottom: 5px;"><b>Data Structures & Algorithms:</b></div>
-    <ul style="margin-top: 0; padding-left: 20px;">
-        <li><a href="https://github.com/Hunterdii/GeeksforGeeks-POTD" target="_blank" style="color: #4CAF50;">GeeksforGeeks POTD</a></li>
-        <li><a href="https://github.com/Hunterdii/Leetcode-POTD" target="_blank" style="color: #4CAF50;">Leetcode POTD</a></li>
-    </ul>
-    <div style="margin-bottom: 5px;"><b>AI/ML Projects:</b></div>
-    <ul style="margin-top: 0; padding-left: 20px;">
-        <li><a href="https://github.com/Hunterdii/AI-Nexus" target="_blank" style="color: #4CAF50;">AI Nexus</a></li>
-    </ul>
-    <div style="margin-top: 10px;">If you find this project helpful, please consider ⭐ starring the repo!</div>
+    def render_about(self):
+        # Apply yellow/white/black theme for about page
+        st.markdown("""
+        <style>
+        .dox-hero-about {
+            background: #FFE600;
+            border-radius: 20px;
+            padding: 2.5rem 2rem 2rem 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+            color: #111;
+        }
+        .dox-hero-about-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+        .dox-hero-about-desc {
+            font-size: 1.2rem;
+            color: #222;
+            font-weight: 500;
+            max-width: 600px;
+        }
+        .dox-about-card {
+            background: #fff !important;
+            border-radius: 16px !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+            color: #111 !important;
+            border: 2px solid #FFE600 !important;
+            margin-bottom: 1.5rem !important;
+            padding: 1.5rem 2rem 1.5rem 2rem;
+        }
+        .dox-about-title {
+            color: #111 !important;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .dox-about-desc {
+            color: #222 !important;
+        }
+        .dox-about-btn, .stButton>button, .stDownloadButton>button {
+            background: #FFE600 !important;
+            color: #111 !important;
+            font-weight: 700 !important;
+            border-radius: 8px !important;
+            font-size: 1.1rem !important;
+            border: none !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+        st.markdown("""
+        <div class="dox-hero-about">
+            <div class="dox-hero-about-title">About DOX AI</div>
+            <div class="dox-hero-about-desc">A powerful AI-driven platform for optimizing your resume</div>
 </div>
-"""
-        st.sidebar.markdown(message, unsafe_allow_html=True)
-
+        """, unsafe_allow_html=True)
+        st.markdown('<div class="dox-about-card">', unsafe_allow_html=True)
+        # Main about content (profile, vision, features, etc.)
+        # You can keep the rest of the about page logic here, but ensure all main sections are inside .dox-about-card
+        from ui_components import apply_modern_styles
+        import base64
+        import os
+        def get_image_as_base64(file_path):
+            try:
+                with open(file_path, "rb") as image_file:
+                    encoded = base64.b64encode(image_file.read()).decode()
+                    return f"data:image/jpeg;base64,{encoded}"
+            except:
+                return None
+        image_path = os.path.join(os.path.dirname(__file__), "assets",  "124852522.jpeg")
+        image_base64 = get_image_as_base64(image_path)
+        st.markdown(f"""
+            <div style='text-align: center; padding: 2rem; color: #FFE600;'>
+                <img src="https://avatars.githubusercontent.com/anskp"
+                     alt="ANAS KP"
+                     style="width: 200px; height: 200px; border-radius: 50%; margin: 0 auto 1.5rem; display: block; object-fit: cover; border: 4px solid #FFE600;">
+                <h2 style="font-size: 2.5rem; color: #FFE600; margin-bottom: 0.5rem;">ANAS KP (<a href='https://github.com/anskp' style='color:#FFE600;'>anskp</a>)</h2>
+                <p style="font-size: 1.2rem; color: #FFE600; margin-bottom: 1.5rem;">Full Stack Developer & AI/ML Enthusiast</p>
+                <div style="display: flex; justify-content: center; gap: 1.5rem; margin: 2rem 0;">
+                    <a href="https://github.com/anskp" style="font-size: 2rem; color: #FFE600; transition: all 0.3s ease; padding: 0.5rem; border-radius: 50%; background: #222; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/anskp" style="font-size: 2rem; color: #FFE600; transition: all 0.3s ease; padding: 0.5rem; border-radius: 50%; background: #222; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:anaskoyakkara@gmail.com" style="font-size: 2rem; color: #FFE600; transition: all 0.3s ease; padding: 0.5rem; border-radius: 50%; background: #222; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <p style="color: #FFE600; line-height: 1.8; font-size: 1.1rem; margin-top: 2rem; text-align: center;">Hello! I'm a passionate Full Stack Developer with expertise in AI and Machine Learning. I created DOX AI to revolutionize how job seekers approach their career journey. With my background in both software development and AI, I've designed this platform to provide intelligent, data-driven insights for resume optimization.</p>
+            </div>
+        """, unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
     def main(self):
         """Main application entry point"""
@@ -2913,8 +3087,40 @@ class ResumeApp:
         
         # Admin login/logout in sidebar
         with st.sidebar:
-            st_lottie(self.load_lottie_url("https://assets5.lottiefiles.com/packages/lf20_xyadoh9h.json"), height=200, key="sidebar_animation")
-            st.title("Smart Resume AI")
+            st.markdown("""
+            <style>
+            .stButton>button {
+                background: #FFE600 !important;
+                color: #111 !important;
+                font-weight: 700 !important;
+                border-radius: 10px !important;
+                font-size: 1.1rem !important;
+                border: none !important;
+                margin-bottom: 0.7rem !important;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+                transition: background 0.2s;
+            }
+            .stButton>button:hover {
+                background: #ffe600cc !important;
+                color: #000 !important;
+            }
+            .dox-animated-heading {
+                font-size: 2.2rem;
+                font-weight: 900;
+                color: #FFE600;
+                text-align: center;
+                margin-top: 1.5rem;
+                margin-bottom: 1.5rem;
+                letter-spacing: 2px;
+                animation: dox-pulse 1.5s infinite alternate;
+            }
+            @keyframes dox-pulse {
+                0% { text-shadow: 0 0 0px #FFE600, 0 0 0px #fff; }
+                100% { text-shadow: 0 0 16px #FFE600, 0 0 8px #fff; }
+            }
+            </style>
+            """, unsafe_allow_html=True)
+            st.markdown('<div class="dox-animated-heading">DOX AI</div>', unsafe_allow_html=True)
             st.markdown("---")
             
             # Navigation buttons
@@ -2956,9 +3162,6 @@ class ResumeApp:
                                     st.error("Invalid credentials")
                             except Exception as e:
                                 st.error(f"Error during login: {str(e)}")
-        
-            # Display the repository notification in the sidebar
-            self.show_repo_notification()
 
         # Force home page on first load
         if 'initial_load' not in st.session_state:
@@ -2981,7 +3184,7 @@ class ResumeApp:
             self.render_home()
     
         # Add footer to every page
-        self.add_footer()
+        # self.add_footer()  # Removed, as footer is no longer used
 
 if __name__ == "__main__":
     app = ResumeApp()
