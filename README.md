@@ -2,7 +2,9 @@
 
 > **AI-Powered Resume Analyzer & Builder**
 
-![DOX AI Banner](https://avatars.githubusercontent.com/anskp)
+<p align="center">
+  <img src="assets/doxai-logo.svg" alt="DOX AI Logo" width="220"/>
+</p>
 
 ## 🚀 Overview
 
@@ -40,10 +42,10 @@ This project is a complete redesign and reimplementation, with all features, UI,
 ## 🛠️ Setup & Installation
 
 ### 1. Clone the repository
-```bash
+   ```bash
 git clone https://github.com/anskp/DOX-AI
 cd DOX-AI
-```
+   ```
 
 ### 2. Create a Virtual Environment (Optional)
 Set up a virtual environment to manage dependencies:
@@ -63,16 +65,16 @@ python -m venv venv
 
 ### 3. Install dependencies
 Install the required Python packages:
-```bash
-pip install -r requirements.txt
-```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ### 4. Download the spaCy model
 Ensure that the necessary NLP model is installed:
-```bash
-python -m spacy download en_core_web_sm
-```
-
+   ```bash
+   python -m spacy download en_core_web_sm
+   ```
+   
 🎉 **Congratulations 🥳😱 your set-up 👆 and installation is finished 🥳😱**
 
 ### 5. Configure Environment Variables (Mandatory for AI-Analyzer Functionality)
@@ -90,9 +92,9 @@ GOOGLE_API_KEY=your_google_gemini_api_key
 
 ### 6. Run the application
 Start the application using Streamlit:
-```bash
-streamlit run app.py
-```
+   ```bash
+   streamlit run app.py
+   ```
 
 ---
 

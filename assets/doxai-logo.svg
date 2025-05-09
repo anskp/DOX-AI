@@ -1,0 +1,8 @@
+<svg width="220" height="80" viewBox="0 0 220 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="220" height="80" rx="18" fill="#FFE600"/>
+  <text x="50%" y="54%" text-anchor="middle" fill="#111" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="bold" letter-spacing="6">DOX AI</text>
+  <g>
+    <circle cx="38" cy="40" r="14" fill="#111"/>
+    <path d="M38 32v16M30 40h16" stroke="#FFE600" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg> 
